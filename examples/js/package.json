@@ -1,0 +1,17 @@
+{
+  "name": "fonk-negative-number-validator-js-example",
+  "version": "1.0.0",
+  "description": "fonk-negative-number-validator, javascript example",
+  "main": "index.html",
+  "scripts": {
+    "start": "parcel index.html --open"
+  },
+  "dependencies": {
+    "@lemoncode/fonk": "latest",
+    "@lemoncode/fonk-negative-number-validator": "latest"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.6.0",
+    "parcel-bundler": "^1.6.1"
+  }
+}
