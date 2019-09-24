@@ -51,7 +51,7 @@ You can customize the error message displayed in two ways:
 ```javascript
 import { negativeNumber } from '@lemoncode/fonk-negative-number-validator';
 
-negativeNumber.setErrorMessage('El campo debe de ser numérico');
+negativeNumber.setErrorMessage('El campo debe de ser un número negativo');
 ```
 
 - Locally just override the error message for this validationSchema:
