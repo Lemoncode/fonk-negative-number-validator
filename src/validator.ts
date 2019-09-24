@@ -3,30 +3,46 @@ import {
   parseMessageWithCustomArgs,
 } from '@lemoncode/fonk';
 
-// TODO: Add validator type
-const VALIDATOR_TYPE = '';
+const VALIDATOR_TYPE = 'NEGATIVE_NUMBER';
 
-// TODO: Add default message
-let defaultMessage = '';
+let defaultMessage = 'The value must be a negative number';
 export const setErrorMessage = message => (defaultMessage = message);
+
+const defaultCustomArgs: CustomValidatorArgs = {
+  allowZero: false,
+};
+
+const validateType = value => typeof value === 'number';
+
+const validate = (value, args: CustomValidatorArgs) =>
+  args.allowZero ? value <= 0 : value < 0;
 
 const isDefined = value => value !== void 0 && value !== null && value !== '';
 
-export const validator: FieldValidationFunctionSync = fieldValidatorArgs => {
-  const { value, message = defaultMessage, customArgs } = fieldValidatorArgs;
+interface CustomValidatorArgs {
+  allowZero?: boolean;
+}
 
-  // TODO: Add validator
-  const succeeded = !isDefined(value) || ...;
+export const validator: FieldValidationFunctionSync = fieldValidatorArgs => {
+  const {
+    value,
+    message = defaultMessage,
+    customArgs = defaultCustomArgs,
+  } = fieldValidatorArgs;
+
+  const args: CustomValidatorArgs = {
+    ...defaultCustomArgs,
+    ...customArgs,
+  };
+
+  const succeeded =
+    !isDefined(value) || (validateType(value) && validate(value, args));
 
   return {
     succeeded,
     message: succeeded
       ? ''
-      : // TODO: Use if it has custom args
-        parseMessageWithCustomArgs(
-          (message as string) || defaultMessage,
-          customArgs
-        ),
+      : parseMessageWithCustomArgs(message as string, args),
     type: VALIDATOR_TYPE,
   };
 };

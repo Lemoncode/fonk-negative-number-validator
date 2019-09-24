@@ -6,9 +6,7 @@
 
 This is a [fonk](https://github.com/Lemoncode/fonk) microlibrary that brings validation capabilities to:
 
-// TODO: Update description and example.
-
-- Validate if a field of a form ....
+- Validate if a field of a form is a negative number
 
 How to add it to an existing form validation schema:
 
@@ -31,6 +29,21 @@ const validationSchema = {
 };
 ```
 
+We can specify if the validator allows zero (false by default):
+
+```javascript
+import { negativeNumber } from '@lemoncode/fonk-negative-number-validator';
+
+const validationSchema = {
+  price: [
+    {
+      validator: negativeNumber.validator,
+      customArgs: { allowZero: true },
+    },
+  ],
+};
+```
+
 You can customize the error message displayed in two ways:
 
 - Globally, replace the default error message in all validationSchemas (e.g. porting to spanish):
@@ -38,7 +51,7 @@ You can customize the error message displayed in two ways:
 ```javascript
 import { negativeNumber } from '@lemoncode/fonk-negative-number-validator';
 
-negativeNumber.setErrorMessage('El campo debe de ser numérico');
+negativeNumber.setErrorMessage('El campo debe de ser un número negativo');
 ```
 
 - Locally just override the error message for this validationSchema:
