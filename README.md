@@ -14,7 +14,7 @@ We have the following form model:
 
 ```
 const myFormValues = {
-  product : 'shoes',
+  product: 'shoes',
   price: 20,
 }
 ```
@@ -25,7 +25,9 @@ We can add a negativeNumber validation to the myFormValues
 import { negativeNumber } from '@lemoncode/fonk-negative-number-validator';
 
 const validationSchema = {
-  price: [negativeNumber.validator],
+  field: {
+    price: [negativeNumber.validator],
+  },
 };
 ```
 
@@ -35,12 +37,14 @@ We can specify if the validator allows zero (false by default):
 import { negativeNumber } from '@lemoncode/fonk-negative-number-validator';
 
 const validationSchema = {
-  price: [
-    {
-      validator: negativeNumber.validator,
-      customArgs: { allowZero: true },
-    },
-  ],
+  field: {
+    price: [
+      {
+        validator: negativeNumber.validator,
+        customArgs: { allowZero: true },
+      },
+    ],
+  },
 };
 ```
 
@@ -60,12 +64,14 @@ negativeNumber.setErrorMessage('El campo debe de ser un número negativo');
 import { negativeNumber } from '@lemoncode/fonk-negative-number-validator';
 
 const validationSchema = {
-  price: [
-    {
-      validator: negativeNumber.validator,
-      message: 'Error message only updated for the validation schema',
-    },
-  ],
+  field: {
+    price: [
+      {
+        validator: negativeNumber.validator,
+        message: 'Error message only updated for the validation schema',
+      },
+    ],
+  },
 };
 ```
 
