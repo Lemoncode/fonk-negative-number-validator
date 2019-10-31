@@ -8,6 +8,12 @@ This is a [fonk](https://github.com/Lemoncode/fonk) microlibrary that brings val
 
 - Validate if a field of a form is a negative number
 
+How to install it:
+
+```bash
+npm install @lemoncode/fonk-negative-number-validator --save
+```
+
 How to add it to an existing form validation schema:
 
 We have the following form model:
