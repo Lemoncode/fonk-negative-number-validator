@@ -3,7 +3,12 @@ import { negativeNumber } from '@lemoncode/fonk-negative-number-validator';
 
 const validationSchema = {
   field: {
-    myField: [negativeNumber.validator],
+    myField: [
+      {
+        validator: negativeNumber.validator,
+        customArgs: { allowZero: true, strictTypes: true },
+      },
+    ],
   },
 };
 
