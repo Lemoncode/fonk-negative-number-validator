@@ -37,7 +37,27 @@ const validationSchema = {
 };
 ```
 
-We can specify if the validator allows zero (false by default):
+The validator must be configured with the following required arguments:
+
+```javascript
+export interface CustomValidatorArgs {
+  strictTypes?: boolean;
+  allowZero?: boolean;
+}
+```
+
+You need to know the default arguments:
+
+```javascript
+let defaultCustomArgs: CustomValidatorArgs = {
+  strictTypes: false,
+  allowZero: false,
+};
+```
+
+You can specify the custom arguments in two ways:
+
+- Locally just customize the arguments for this validationSchema (e.g. We can specify if the validator allows zero):
 
 ```javascript
 import { negativeNumber } from '@lemoncode/fonk-negative-number-validator';
@@ -52,6 +72,14 @@ const validationSchema = {
     ],
   },
 };
+```
+
+- Globally, replace the default custom arguments in all validationSchemas (e.g. enable strict types):
+
+```javascript
+import { negativeNumber } from '@lemoncode/fonk-negative-number-validator';
+
+negativeNumber.setCustomArgs({ strictTypes: true });
 ```
 
 You can customize the error message displayed in two ways:

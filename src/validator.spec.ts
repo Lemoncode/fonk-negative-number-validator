@@ -1,4 +1,4 @@
-import { validator, setErrorMessage } from './validator';
+import { validator, setErrorMessage, setCustomArgs } from './validator';
 
 const VALIDATOR_TYPE = 'NEGATIVE_NUMBER';
 const DEFAULT_MESSAGE = 'The value must be a negative number';
@@ -261,6 +261,23 @@ describe('fonk-negative-number-validator specs', () => {
     const value = 'test';
 
     setErrorMessage('other message');
+
+    // Act
+    const result = validator({ value });
+
+    // Assert
+    expect(result).toEqual({
+      succeeded: false,
+      message: 'other message',
+      type: VALIDATOR_TYPE,
+    });
+  });
+
+  it('should overwrite default customArgs when it feeds value is valid and calls to setCustomArgs', () => {
+    // Arrange
+    const value = '-1';
+
+    setCustomArgs({ strictTypes: true });
 
     // Act
     const result = validator({ value });
